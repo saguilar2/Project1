@@ -6,13 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:id="@+id/tbl_holes"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_weight="1"
+        android:background="#0B770F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:id="@+id/score_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/currScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/score_display"
+                android:textColor="@color/white"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/highScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/high_score"
+                android:textColor="@color/white"
+                android:textSize="26sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/lives_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/IV_life0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@tools:sample/avatars"
+                app:srcCompat="@drawable/lives" />
+
+            <ImageView
+                android:id="@+id/IV_life1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@tools:sample/avatars"
+                app:srcCompat="@drawable/lives" />
+
+            <ImageView
+                android:id="@+id/IV_life2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@tools:sample/avatars"
+                app:srcCompat="@drawable/lives" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/holes_row0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/IB_openwindow0"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/openwindow" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/openwindow" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/openwindow" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/holes_row1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:id="@+id/holes_row2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

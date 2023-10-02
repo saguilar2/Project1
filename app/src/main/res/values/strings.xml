@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Project1</string>
+
+    <string name="score_display">Score: </string>
+
+    <string name="high_score">High Score: </string>
+
 </resources>
