@@ -24,4 +24,43 @@ public class Player {
         this.lives = lives;
     }
 
+    public int getCurrentLevel() {
+        return CurrentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        CurrentLevel = currentLevel;
+    }
+
+    public int getCurrentScore() {
+        return CurrentScore;
+    }
+
+    public void setCurrentScore(int currentScore) {
+        CurrentScore = currentScore;
+    }
+
+    public int getHighScore() {
+        return HighScore;
+    }
+
+    public void setHighScore(int highScore) {
+        HighScore = highScore;
+    }
+
+    public int getLevelScore() {
+        return LevelScore;
+    }
+
+    public void setLevelScore(int levelScore) {
+        LevelScore = levelScore;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
 }
