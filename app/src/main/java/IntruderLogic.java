@@ -22,6 +22,7 @@ public class IntruderLogic {
     private int LevelScore;
     private int NumberOfRounds;
     private int lives;
+    
     IntruderLogic(int SizeOfGrid){
         this.CurrentLevel = 1;
         this.IntruderOnScreen = StartTime;
