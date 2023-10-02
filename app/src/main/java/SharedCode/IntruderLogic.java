@@ -1,3 +1,5 @@
+package SharedCode;
+
 import java.util.Random;
 public class IntruderLogic {
 
