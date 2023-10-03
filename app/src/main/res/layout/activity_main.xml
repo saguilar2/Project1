@@ -1,109 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#29832D"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TableLayout
-        android:id="@+id/tbl_holes"
+    <LinearLayout
+        android:id="@+id/scoreLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/scoreTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/score_display"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/highScoreTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/high_score"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/livesLay"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:weightSum="3">
+
+        <ImageView
+            android:id="@+id/heart1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/lives" />
+
+        <ImageView
+            android:id="@+id/heart2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/lives" />
+
+        <ImageView
+            android:id="@+id/heart3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/lives" />
+
+
+    </LinearLayout>
+
+
+    <GridLayout
+        android:id="@+id/moleGridLay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
-        android:background="#0B770F"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="#34FFFFFF"
+        android:columnCount="3"
+        android:rowCount="3">
 
-        <TableRow
-            android:id="@+id/score_row"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <!-- Add 9 ImageViews for the 3x3 grid -->
+        <!-- In practice, you'd probably programmatically generate these ImageViews in your Activity code -->
+        <ImageView
+            android:id="@+id/window1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <TextView
-                android:id="@+id/currScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/score_display"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
+        <ImageView
+            android:id="@+id/window2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <TextView
-                android:id="@+id/highScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/high_score"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
-        </TableRow>
+        <ImageView
+            android:id="@+id/window3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-        <TableRow
-            android:id="@+id/lives_row"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+        <ImageView
+            android:id="@+id/window4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <ImageView
-                android:id="@+id/IV_life0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@tools:sample/avatars"
-                app:srcCompat="@drawable/lives" />
+        <ImageView
+            android:id="@+id/window5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <ImageView
-                android:id="@+id/IV_life1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@tools:sample/avatars"
-                app:srcCompat="@drawable/lives" />
+        <ImageView
+            android:id="@+id/window6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <ImageView
-                android:id="@+id/IV_life2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@tools:sample/avatars"
-                app:srcCompat="@drawable/lives" />
-        </TableRow>
+        <ImageView
+            android:id="@+id/window7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-        <TableRow
-            android:id="@+id/holes_row0"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/window8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <ImageButton
-                android:id="@+id/IB_openwindow0"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/openwindow" />
+        <ImageView
+            android:id="@+id/window9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/openwindow" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/openwindow" />
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/openwindow" />
-        </TableRow>
+    </GridLayout>
 
-        <TableRow
-            android:id="@+id/holes_row1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-        <TableRow
-            android:id="@+id/holes_row2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
