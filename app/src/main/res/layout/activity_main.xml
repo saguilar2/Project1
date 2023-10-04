@@ -85,9 +85,9 @@
         android:columnCount="3"
         android:rowCount="3">
 
-        <!-- Add 9 ImageViews for the 3x3 grid -->
-        <!-- In practice, you'd probably programmatically generate these ImageViews in your Activity code -->
-        <ImageView
+        <!-- Add 9 ImageButtons for the 3x3 grid -->
+        <!-- In practice, you'd probably programmatically generate these ImageButtons in your Activity code -->
+        <ImageButton
             android:id="@+id/window1"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -98,7 +98,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window2"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -109,7 +109,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window3"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -120,7 +120,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window4"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -131,7 +131,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window5"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -142,7 +142,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window6"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -153,7 +153,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window7"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -164,7 +164,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window8"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -175,7 +175,7 @@
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/window9"
             android:layout_width="0dp"
             android:layout_height="0dp"
