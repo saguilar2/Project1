@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             imgBtnList.get(location).setActivated(true);
 
-            b
+
             /*
 
 

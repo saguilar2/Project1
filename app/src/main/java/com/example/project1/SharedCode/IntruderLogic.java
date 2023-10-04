@@ -63,6 +63,12 @@ public class IntruderLogic {
         Random rand = new Random();
         return rand.nextInt(SizeOfGrid);
     }
+    public int[] GameStart(){
+        CurrentRound--;
+
+        return new int[]{IntruderAppearanceRate, IntruderOnScreen,NewLocation(),CurrentScore,lives,CurrentRound,0};
+
+    }
     public int[]  RoundEnd(boolean WasTheIntruderStop) {
         int NewLevel = 0;
 
