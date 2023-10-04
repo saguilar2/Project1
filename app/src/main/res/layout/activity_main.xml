@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/lives" />
+            android:background="@drawable/lives"/>
 
         <ImageView
             android:id="@+id/heart2"
@@ -93,7 +93,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window2"
@@ -101,7 +104,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window3"
@@ -109,7 +115,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window4"
@@ -117,7 +126,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window5"
@@ -125,7 +137,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window6"
@@ -133,7 +148,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window7"
@@ -141,7 +159,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window8"
@@ -149,7 +170,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
         <ImageView
             android:id="@+id/window9"
@@ -157,7 +181,10 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/openwindow" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/window_selector" />
 
 
     </GridLayout>
