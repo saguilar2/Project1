@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.project1.SharedCode.IntruderLogic;
+import com.example.project1.SharedCode.Timer;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,14 @@ public class MainActivity extends AppCompatActivity {
     private Button startBtn;
     private final String TAG = "DEBUG";
 
+    private int[] roundEndInfo;
+    private Timer burglarOnScreen = new Timer();
+    private Timer appearanceRate = new Timer();
     private int score = 0;
     private boolean gameStarted;
     private int location;
 
-    private StateListDrawable sld = new StateListDrawable();
+    private final IntruderLogic intruder = new IntruderLogic(9);
 
     public ArrayList<ImageButton> imgBtnList = new ArrayList<>(10);
 
@@ -44,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         gameStarted = false;
-
 
         burg1 = findViewById(R.id.window1);
         burg2 = findViewById(R.id.window2);
@@ -72,14 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameStarted = true;
                 Log.d("DEBUG", "StartBtn Clicked");
-                if(gameStarted == true){
-                    Log.d("DEBUG", "gameStarted = true");
-                    for(int i =0; i<imgBtnList.size(); i++) {
-                        imgBtnList.get(i).setActivated(false);
-                        Log.d(TAG, "Image btn made not clickable: " + imgBtnList.get(i));
-                    }
-                    runApp(gameStarted);
-                }
+                runApp(gameStarted);
             }
         });
 
@@ -89,24 +85,24 @@ public class MainActivity extends AppCompatActivity {
     public void runApp(boolean gameStarted){
 
         if (gameStarted){
-            IntruderLogic intruder = new IntruderLogic(9);
             location = intruder.NewLocation();
-            //intruder.setIntruderOnScreen();
+
             imgBtnList.get(location).setActivated(true);
+
+            b
+            /*
+
+
+             */
+
             imgBtnList.get(location).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    boolean wait = true;
-                    imgBtnList.get(location).setSelected(true);
-                    //use handler to wait
-                    intruder.RoundEnd(true);
+                    imgBtnList.get(location).setActivated(false);
+//                    imgBtnList.get(location).setSelected(true);   //Close the window for alittle bit
+                    roundEndInfo = intruder.RoundEnd(true);
                     Log.d("DEBUG", "Correct Location Clicked");
-                    for (int i = 0; i < 100; i++) {
-                        Log.d(TAG, "runApp: " + i);
-                    }
-                    imgBtnList.get(location).setSelected(false);
                 }
-
             });
 
         }
@@ -114,16 +110,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG,"Something bad happened, App wouldn't run");
         }
     }
-//        gameStarted = false;
 
-/*        while(gameStarted == true) {
-
-
-        }*//*
-
-        while(gameStarted = false) {
-
-            });*/
+    public boolean toggleGameStarted(boolean gameStarted){
+        gameStarted = !gameStarted;
+        return gameStarted;
+    }
 
 
 

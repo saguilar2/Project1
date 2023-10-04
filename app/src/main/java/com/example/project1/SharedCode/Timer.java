@@ -6,13 +6,13 @@ public class Timer {
     private long TimeDuration;
     private boolean Running;
     private boolean Fished;
-Timer(){
+public Timer(){
     StartTime = 0;
     TimeDuration = 0;
     Running = false;
     Fished = false;
 }
-    Timer(long TimeDuration){
+ public Timer(long TimeDuration){
         StartTime = 0;
         this.TimeDuration = TimeDuration;
         Running = true;
