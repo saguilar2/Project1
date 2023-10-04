@@ -1,7 +1,9 @@
 package com.example.project1;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "DEBUG";
 
     private int score = 0;
-    private boolean gameStarted = false;
+    private boolean gameStarted;
+    private int location;
+
+    private StateListDrawable sld = new StateListDrawable();
 
     public ArrayList<ImageButton> imgBtnList = new ArrayList<>(10);
 
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        gameStarted = false;
 
 
         burg1 = findViewById(R.id.window1);
@@ -68,14 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 if(gameStarted == true){
                     Log.d("DEBUG", "gameStarted = true");
                     for(int i =0; i<imgBtnList.size(); i++) {
-                        imgBtnList.get(i).setClickable(false);
+                        imgBtnList.get(i).setActivated(false);
                         Log.d(TAG, "Image btn made not clickable: " + imgBtnList.get(i));
                     }
                     runApp(gameStarted);
-                }
-                else{
-                    Log.d("DEBUG", "gamestarted = false");
-
                 }
             }
         });
@@ -84,26 +87,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void runApp(boolean gameStarted){
-        Log.d("DEBUG", "runApp called");
-        IntruderLogic intruder = new IntruderLogic(9);
-        Log.d("DEBUG", "Intruder Created");
-        int location = intruder.NewLocation();
-        Log.d("DEBUG", "Game Started");
-        imgBtnList.get(location).setClickable(true);
-        intruder.setIntruderOnScreen();
 
-        imgBtnList.get(location).setClickable(true);
-        Log.d("DEBUG", "Window made clickable: " + imgBtnList.get(location).toString());
+        if (gameStarted){
+            IntruderLogic intruder = new IntruderLogic(9);
+            location = intruder.NewLocation();
+            //intruder.setIntruderOnScreen();
+            imgBtnList.get(location).setActivated(true);
+            imgBtnList.get(location).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    boolean wait = true;
+                    imgBtnList.get(location).setSelected(true);
+                    //use handler to wait
+                    intruder.RoundEnd(true);
+                    Log.d("DEBUG", "Correct Location Clicked");
+                    for (int i = 0; i < 100; i++) {
+                        Log.d(TAG, "runApp: " + i);
+                    }
+                    imgBtnList.get(location).setSelected(false);
+                }
 
-        Log.d("DEBUG", "Location: " + location);
+            });
 
-        imgBtnList.get(location).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intruder.RoundEnd(true);
-                Log.d("DEBUG", "Correct Location Clicked");
-            }
-        });
+        }
+        else {
+            Log.d(TAG,"Something bad happened, App wouldn't run");
+        }
     }
 //        gameStarted = false;
 

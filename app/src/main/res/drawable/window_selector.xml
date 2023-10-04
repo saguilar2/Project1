@@ -2,19 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/openwindow"
-        android:state_enabled="false">
-    </item>
-
-    <item
-        android:state_enabled="true"
-        android:drawable="@drawable/burglar">
-
-    </item>
+        android:state_activated="false"
+        android:drawable="@drawable/openwindow"/>
     <item
         android:state_activated="true"
-        android:drawable="@drawable/closedwindow">
-
-    </item>
+        android:drawable="@drawable/burglar"/>
+    <item
+        android:state_selected="true"
+        android:drawable="@drawable/closedwindow"/>
 
 </selector>

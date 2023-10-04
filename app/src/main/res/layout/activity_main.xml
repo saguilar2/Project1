@@ -96,7 +96,9 @@
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/window_selector" />
+            android:background="@drawable/window_selector"
+            android:src="@drawable/window_selector"
+            android:contentDescription="@string/window_context_desc" />
 
         <ImageButton
             android:id="@+id/window2"
@@ -105,9 +107,11 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:clickable="true"
+            android:contentDescription="@string/window_context_desc"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:background="@drawable/window_selector" />
+            android:background="@drawable/window_selector"
+            android:src="@drawable/window_selector" />
 
         <ImageButton
             android:id="@+id/window3"
@@ -117,6 +121,7 @@
             android:layout_columnWeight="1"
             android:clickable="true"
             android:focusable="true"
+            android:contentDescription="@string/window_context_desc"
             android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
@@ -128,7 +133,10 @@
             android:layout_columnWeight="1"
             android:clickable="true"
             android:focusable="true"
+            android:contentDescription="@string/window_context_desc"
             android:focusableInTouchMode="true"
+            android:src="@drawable/window_selector"
+
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -139,7 +147,9 @@
             android:layout_columnWeight="1"
             android:clickable="true"
             android:focusable="true"
+            android:contentDescription="@string/window_context_desc"
             android:focusableInTouchMode="true"
+            android:src="@drawable/window_selector"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -149,8 +159,10 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:clickable="true"
+            android:contentDescription="@string/window_context_desc"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:src="@drawable/window_selector"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -159,9 +171,11 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:contentDescription="@string/window_context_desc"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:src="@drawable/window_selector"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -172,7 +186,9 @@
             android:layout_columnWeight="1"
             android:clickable="true"
             android:focusable="true"
+            android:contentDescription="@string/window_context_desc"
             android:focusableInTouchMode="true"
+            android:src="@drawable/window_selector"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -181,9 +197,12 @@
             android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:contentDescription="@string/window_context_desc"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:src="@drawable/window_selector"
+
             android:background="@drawable/window_selector" />
 
 
@@ -194,7 +213,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:layout_gravity="center"
-        android:text="Start"
+        android:text="@string/start_btn"
         android:textSize="26sp"/>
 
 
