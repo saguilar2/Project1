@@ -1,4 +1,4 @@
-package SharedCode;
+package com.example.project1.SharedCode;
 
 import java.util.Random;
 public class IntruderLogic {
@@ -25,7 +25,7 @@ public class IntruderLogic {
     private int NumberOfRounds;
     private int lives;
     
-    IntruderLogic(int SizeOfGrid){
+    public IntruderLogic(int SizeOfGrid){
         this.CurrentLevel = 1;
         this.IntruderOnScreen = StartTime;
         this.CurrentScore = 0;
@@ -37,7 +37,7 @@ public class IntruderLogic {
         this.CurrentRound = NumberOfRoundsDefult;
     }
 
-    IntruderLogic(int CurrentLevel,int SizeOfGrid,int lives){
+    public IntruderLogic(int CurrentLevel,int SizeOfGrid,int lives){
 
         this.CurrentLevel = CurrentLevel;
         this.IntruderOnScreen = StartTime;

@@ -1,4 +1,4 @@
-package SharedCode;
+package com.example.project1.SharedCode;
 
 public class Timer {
 
