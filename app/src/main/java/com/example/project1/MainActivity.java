@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton burg8;
     private ImageButton burg9;
     private Button startBtn;
+    private final String TAG = "DEBUG";
 
     private int score = 0;
     private boolean gameStarted = false;
@@ -66,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("DEBUG", "StartBtn Clicked");
                 if(gameStarted == true){
                     Log.d("DEBUG", "gameStarted = true");
+                    for(int i =0; i<imgBtnList.size(); i++) {
+                        imgBtnList.get(i).setClickable(false);
+                        Log.d(TAG, "Image btn made not clickable: " + imgBtnList.get(i));
+                    }
                     runApp(gameStarted);
                 }
                 else{
@@ -83,28 +88,34 @@ public class MainActivity extends AppCompatActivity {
         IntruderLogic intruder = new IntruderLogic(9);
         Log.d("DEBUG", "Intruder Created");
         int location = intruder.NewLocation();
-        while(gameStarted == true) {
-            Log.d("DEBUG", "Game Started");
-            imgBtnList.get(location).setClickable(true);
-            intruder.setIntruderOnScreen();
+        Log.d("DEBUG", "Game Started");
+        imgBtnList.get(location).setClickable(true);
+        intruder.setIntruderOnScreen();
 
-            imgBtnList.get(location).setClickable(true);
-            Log.d("DEBUG", "Window made clickable: " + imgBtnList.get(location).toString());
+        imgBtnList.get(location).setClickable(true);
+        Log.d("DEBUG", "Window made clickable: " + imgBtnList.get(location).toString());
 
-            Log.d("DEBUG", "Location: " + location);
-            gameStarted = false;
-        }
-        while(gameStarted = false) {
-            imgBtnList.get(location).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    intruder.RoundEnd(true);
-                    Log.d("DEBUG", "Correct Location Clicked");
-                }
-            });
+        Log.d("DEBUG", "Location: " + location);
 
-            gameStarted = true;
-        }
+        imgBtnList.get(location).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intruder.RoundEnd(true);
+                Log.d("DEBUG", "Correct Location Clicked");
+            }
+        });
     }
+//        gameStarted = false;
+
+/*        while(gameStarted == true) {
+
+
+        }*//*
+
+        while(gameStarted = false) {
+
+            });*/
+
+
 
 }

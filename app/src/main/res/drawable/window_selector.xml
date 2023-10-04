@@ -3,7 +3,7 @@
 
     <item
         android:drawable="@drawable/openwindow"
-        android:state_window_focused="true">
+        android:state_enabled="false">
     </item>
 
     <item
