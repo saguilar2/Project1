@@ -20,13 +20,10 @@ public Timer(){
     }
 
     public void Start(long TimeDuration){
-        if(Running){
             StartTime = System.currentTimeMillis();
             this.TimeDuration = TimeDuration;
             Running = true;
             Fished = false;
-        }
-
     }
 
     public void stop(){
@@ -36,23 +33,25 @@ public Timer(){
 
     }
     public void CheckTimer(){
-        if(!Fished) {
             if( (System.currentTimeMillis() - StartTime) >= TimeDuration) {
                 Running = false;
                 Fished = true;
-            }
         }
     }
 
     public boolean TimerEnded(){
-        if(!Fished) {
+        if(!Fished && Running) {
             CheckTimer();
         }
     return Fished;
     }
 
     public long TimeRemaning(){
-    return TimeDuration - (System.currentTimeMillis() - StartTime);
+        if(Fished) {
+            return 0;
+        }else{
+            return TimeDuration - (System.currentTimeMillis() - StartTime);
+        }
     }
 
 }

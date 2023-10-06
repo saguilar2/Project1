@@ -1,7 +1,10 @@
 package com.example.project1;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.project1.SharedCode.IntruderLogic;
 import com.example.project1.SharedCode.Timer;
@@ -39,12 +43,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton burg8;
     private ImageButton burg9;
     private Button startBtn;
-    private final String TAG = "DEBUG";
 
+    private TextView scoreTVDisplay;
+    private TextView highScoreTVDisplay;
+    private final String TAG = "DEBUG";
+    private ScoreModel scoreModel;
     private int[] roundEndInfo;
     private Timer burglarOnScreen = new Timer();
     private Timer appearanceRate = new Timer();
-    private int score = 0;
     private boolean gameStarted;
     private boolean startNewGame;
     private boolean startNewGame2;
@@ -61,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
         startNewGame = true;
         startNewGame2 = true;
         gameStarted = false;
+        scoreModel = new ViewModelProvider(this).get(ScoreModel.class);
+
+        scoreTVDisplay = findViewById(R.id.scoreTV);
+        highScoreTVDisplay = findViewById(R.id.highScoreTV);
 
         burg1 = findViewById(R.id.window1);
         burg2 = findViewById(R.id.window2);
@@ -82,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
         imgBtnList.add(burg7);
         imgBtnList.add(burg8);
         imgBtnList.add(burg9);
+        final Observer<Integer> TimePastedObserver = new Observer<Integer>(){
+            @Override
+            public void onChanged(@Nullable final Integer newTime){
+                scoreTVDisplay.setText(newTime);
+
+            }
+        };
+        scoreModel.GetScore().observe(this,TimePastedObserver);
+
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,28 +117,36 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                handler.postDelayed(this, delay);
+if(gameStarted && startNewGame2 ){
+    scoreModel.SetScore(roundEndInfo[currScoreInd]);
+    if(roundEndInfo[newLvlInd] == 1){
+        scoreModel.SetHighScore(roundEndInfo[currScoreInd]);
+    }
+}
+
                 if(gameStarted){
+
                     if(startNewGame) {
                         appearanceRate.Start(roundEndInfo[intruderAppearanceRateInd]);
                         startNewGame = false;
                     }
+                    Log.d(TAG,"time remaning "+appearanceRate.TimerEnded());
                     if(appearanceRate.TimerEnded()) {
                         if(startNewGame2) {
                             dispBurglar();
                             burglarOnScreen.Start(roundEndInfo[intruderOnScreenInd]);
                             startNewGame2 =false;
                         }
-                        if(appearanceRate.TimerEnded()) {
+                      /*  if(burglarOnScreen.TimerEnded()) {
                             killBurglar();
                             roundEndInfo = intruder.RoundEnd(false);
                             startNewGame = true;
                             startNewGame2 = true;
-                        }
+                        }*/
                     }
 
                 }
-
+                handler.postDelayed(this, delay);
             }
         }, delay);
 
@@ -153,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 killBurglar();
                 startNewGame = true;
                 startNewGame2 = true;
-                Log.d("DEBUG", "Correct Location Clicked");
+                Log.d("DEBUG", "Correct Location Clicked: "+ locationIndex);
 
             }
         });
