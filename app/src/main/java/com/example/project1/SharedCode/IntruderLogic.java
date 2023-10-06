@@ -3,7 +3,7 @@ package com.example.project1.SharedCode;
 import java.util.Random;
 
 public class IntruderLogic {
-
+// default values
     private final static int IntruderValue = 10;
 
     //Time in milliseconts
@@ -15,6 +15,8 @@ public class IntruderLogic {
     private final static int NumberOfRoundsDefult = 10;
 
     private final static int livesDefult = 3;
+
+    // values to keep track of
     private int CurrentLevel;
     private int CurrentRound;
     private int IntruderOnScreen;
@@ -26,6 +28,7 @@ public class IntruderLogic {
     private int NumberOfRounds;
     private int lives;
 
+    // default constructor
     public IntruderLogic(int SizeOfGrid) {
         this.CurrentLevel = 1;
         this.IntruderOnScreen = StartTime;
@@ -37,7 +40,7 @@ public class IntruderLogic {
         this.NumberOfRounds = NumberOfRoundsDefult;
         this.CurrentRound = NumberOfRoundsDefult;
     }
-
+// constructor for expansion
     public IntruderLogic(int CurrentLevel, int SizeOfGrid, int lives) {
 
         this.CurrentLevel = CurrentLevel;
@@ -50,7 +53,7 @@ public class IntruderLogic {
         this.CurrentRound = NumberOfRoundsDefult;
         this.NumberOfRounds = NumberOfRoundsDefult;
     }
-
+// Re sets the game
     public void restart() {
         this.CurrentLevel = 1;
         this.IntruderOnScreen = StartTime;
@@ -61,12 +64,13 @@ public class IntruderLogic {
         this.CurrentRound = NumberOfRoundsDefult;
         this.NumberOfRounds = NumberOfRoundsDefult;
     }
-
+// determent the next location for the intruder to appear
     public int NewLocation() {
         Random rand = new Random();
         return rand.nextInt(SizeOfGrid);
     }
 
+    // used to start a game
     public int[] GameStart() {
         CurrentRound--;
 
@@ -74,6 +78,7 @@ public class IntruderLogic {
 
     }
 
+    // used tp send new information for next round to be played
     public int[] RoundEnd(boolean WasTheIntruderStop) {
         int NewLevel = 0;
 
@@ -94,7 +99,7 @@ public class IntruderLogic {
 
         return new int[]{IntruderAppearanceRate, IntruderOnScreen, NewLocation(), CurrentScore, lives, CurrentRound, NewLevel};
     }
-
+    // calls all need actions at the end of a level
     private void LevelEnd() {
         IncreasingLeve();
         setIntruderOnScreen();
@@ -102,12 +107,12 @@ public class IntruderLogic {
         setNumberOfRounds();
         AddBonus();
     }
-
+// calculates the bones for a level
     private void AddBonus() {
         CurrentScore += LevelScore * CurrentLevel;
         LevelScore = 0;
     }
-
+// figures the new number of rounds per level
     private void setNumberOfRounds() {
 
         if (CurrentLevel % 10 == 0) {
@@ -116,19 +121,12 @@ public class IntruderLogic {
         }
         CurrentRound = NumberOfRounds;
     }
-
+// increases the level
     private void IncreasingLeve() {
         CurrentLevel++;
     }
 
-    public void setCurrentLevel(int currentLevel) {
-        CurrentLevel = currentLevel;
-    }
-
-    public int getCurrentLevel() {
-        return CurrentLevel;
-    }
-
+// calculates the new time the intruder would be on screen
     public void setIntruderOnScreen() {
 
         if (IntruderOnScreen <= StartTime && IntruderOnScreen > MinIntruderOnScreen) {
@@ -137,7 +135,7 @@ public class IntruderLogic {
 
     }
 
-
+    // calculates the new time before the intruder appears
     public void setIntruderAppearanceRate() {
         if (IntruderAppearanceRate <= StartTime && IntruderAppearanceRate > MinIntruderAppearanceRate) {
             IntruderAppearanceRate = StartTime - (CurrentLevel * TimeDecresRate);
