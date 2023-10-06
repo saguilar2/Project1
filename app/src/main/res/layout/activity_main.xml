@@ -186,14 +186,27 @@
             android:background="@drawable/window_selector" />
 
     </GridLayout>
+    <LinearLayout
+        android:id="@+id/btn_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/stpBtn"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:text="@string/stop_btn"
+            android:textSize="26sp" />
 
-    <Button
-        android:id="@+id/startbtn"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
-        android:text="@string/start_btn"
-        android:textSize="26sp"/>
+        <Button
+            android:id="@+id/startbtn"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="70dp"
+            android:text="@string/start_btn"
+            android:textSize="26sp"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton burg8;
     private ImageButton burg9;
     private Button startBtn;
+    private Button stpBtn;
 
     private TextView scoreTVDisplay;
     private TextView highScoreTVDisplay;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         scoreTVDisplay = findViewById(R.id.scoreTV);
         highScoreTVDisplay = findViewById(R.id.highScoreTV);
+        startBtn = findViewById(R.id.startbtn);
+        stpBtn = findViewById(R.id.stpBtn);
 
         burg1 = findViewById(R.id.window1);
         burg2 = findViewById(R.id.window2);
@@ -81,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         burg7 = findViewById(R.id.window7);
         burg8 = findViewById(R.id.window8);
         burg9 = findViewById(R.id.window9);
-        startBtn = findViewById(R.id.startbtn);
 
         imgBtnList.add(burg1);
         imgBtnList.add(burg2);
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         imgBtnList.add(burg7);
         imgBtnList.add(burg8);
         imgBtnList.add(burg9);
+
         final Observer<Integer> ScoreObserver = new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable final Integer newScore) {
@@ -110,7 +113,12 @@ public class MainActivity extends AppCompatActivity {
         scoreModel.GetScore().observe(this, ScoreObserver);
         scoreModel.GetHighScore().observe(this, HighScoreObserver);
 
-
+        /*
+         * Start Button onClickListener, when clicked:
+         * Set gameStarted flag to true
+         * and call runApp()
+         *
+         */
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +128,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*
-        Create a new handler and init a delay variable
+         *Stop Button onClickListener, when clicked:
+         * Set gameStarted flag to false
+         */
+        stpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameStarted = false;
+                for(int i = 0; i < imgBtnList.size(); i++){
+                    imgBtnList.get(i).setActivated(false);
+                }
+                scoreModel.SetScore(0);
+            }
+        });
+
+        /*
+         * Create a new handler and init a delay variable
          */
         final Handler handler = new Handler();
         final int delay = 10;
