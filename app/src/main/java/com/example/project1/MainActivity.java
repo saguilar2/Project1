@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 gameStarted = false;
+                startNewGame = true;
+                startNewGame2 = true;
                 for(int i = 0; i < imgBtnList.size(); i++){
                     imgBtnList.get(i).setActivated(false);
                 }
