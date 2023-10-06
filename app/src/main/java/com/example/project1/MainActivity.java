@@ -1,19 +1,16 @@
 package com.example.project1;
 
-import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.project1.SharedCode.IntruderLogic;
@@ -30,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private final int livesInd = 4;
     private final int currRoundInd = 5;
     private final int newLvlInd = 6;
-
 
 
     private ImageButton burg1;
@@ -54,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean gameStarted;
     private boolean startNewGame;
     private boolean startNewGame2;
+    private boolean boolKillBurglar;
 
     private final IntruderLogic intruder = new IntruderLogic(9);
 
     public ArrayList<ImageButton> imgBtnList = new ArrayList<>(10);
+    public int locationOfOldOldBurglar = -1;
 
 
     @Override
@@ -92,22 +90,22 @@ public class MainActivity extends AppCompatActivity {
         imgBtnList.add(burg7);
         imgBtnList.add(burg8);
         imgBtnList.add(burg9);
-        final Observer<Integer> ScoreObserver = new Observer<Integer>(){
+        final Observer<Integer> ScoreObserver = new Observer<Integer>() {
             @Override
-            public void onChanged(@Nullable final Integer newScore){
+            public void onChanged(@Nullable final Integer newScore) {
                 scoreTVDisplay.setText(newScore.toString());
 
             }
         };
-        final Observer<Integer> HighScoreObserver = new Observer<Integer>(){
+        final Observer<Integer> HighScoreObserver = new Observer<Integer>() {
             @Override
-            public void onChanged(@Nullable final Integer newScore){
+            public void onChanged(@Nullable final Integer newScore) {
                 scoreTVDisplay.setText(newScore.toString());
 
             }
         };
-        scoreModel.GetScore().observe(this,ScoreObserver);
-        scoreModel.GetHighScore().observe(this,HighScoreObserver);
+        scoreModel.GetScore().observe(this, ScoreObserver);
+        scoreModel.GetHighScore().observe(this, HighScoreObserver);
 
 
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -119,40 +117,45 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        Create a new handler and init a delay variable
+         */
         final Handler handler = new Handler();
         final int delay = 10;
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-if(gameStarted && startNewGame2 ) {
-    scoreModel.SetScore(Integer.valueOf(roundEndInfo[currScoreInd]));
-    scoreModel.GetScore();
-}
-    if(roundEndInfo[newLvlInd] == 1){
-        scoreModel.GetHighScore();
-    }
+                if (gameStarted && roundEndInfo != null) {
+//                    scoreModel.SetScore(Integer.valueOf(roundEndInfo[currScoreInd]));
+                    scoreModel.GetScore();
+                    if (roundEndInfo[newLvlInd] == 1) {
+                        scoreModel.GetHighScore();
+                    }
+                }
 
 
-                if(gameStarted){
+                if (gameStarted) {
 
-                    if(startNewGame) {
+                    if (startNewGame) {
                         appearanceRate.Start(roundEndInfo[intruderAppearanceRateInd]);
                         startNewGame = false;
                     }
-                    Log.d(TAG,"time remaning "+appearanceRate.TimerEnded());
-                    if(appearanceRate.TimerEnded()) {
-                        if(startNewGame2) {
+                    if (appearanceRate.TimerEnded()) {
+                        Log.d(TAG, "time remaning " + appearanceRate.TimerEnded());
+                        if (startNewGame2) {
+                            if (boolKillBurglar) {
+                                imgBtnList.get(locationOfOldOldBurglar).setActivated(false);
+                                Log.d(TAG, "Killed the burglar" + boolKillBurglar + locationOfOldOldBurglar);
+                                locationOfOldOldBurglar = -1;
+                                boolKillBurglar = false;
+                            }
                             dispBurglar();
                             burglarOnScreen.Start(roundEndInfo[intruderOnScreenInd]);
-                            startNewGame2 =false;
+                            startNewGame2 = false;
                         }
-                      /*  if(burglarOnScreen.TimerEnded()) {
-                            killBurglar();
-                            roundEndInfo = intruder.RoundEnd(false);
-                            startNewGame = true;
-                            startNewGame2 = true;
-                        }*/
+
+                        appearanceRate.resetTimer();
                     }
 
                 }
@@ -163,49 +166,38 @@ if(gameStarted && startNewGame2 ) {
 
     }
 
-    public void runApp(boolean gameStarted){
+    public void runApp(boolean gameStarted) {
 
-        if (gameStarted){
+        if (gameStarted) {
             roundEndInfo = intruder.GameStart();
-        }
-        else {
-            Log.d(TAG,"Something bad happened, App wouldn't run");
+        } else {
+            Log.d(TAG, "Something bad happened, App wouldn't run");
         }
     }
 
-    public boolean toggleGameStarted(boolean gameStarted){
+    public boolean toggleGameStarted(boolean gameStarted) {
         gameStarted = !gameStarted;
         return gameStarted;
     }
 
-    public void dispBurglar(){
+
+    public void dispBurglar() {
 
         imgBtnList.get(roundEndInfo[locationIndex]).setActivated(true);
         imgBtnList.get(roundEndInfo[locationIndex]).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//              imgBtnList.get(roundEndInfo[locationIndex]).setSelected(true);   //Close the window for alittle bit
+                locationOfOldOldBurglar = roundEndInfo[locationIndex];
                 burglarOnScreen.stop();
                 roundEndInfo = intruder.RoundEnd(true);
-                killBurglar();
+                boolKillBurglar = true;
                 startNewGame = true;
                 startNewGame2 = true;
-                Log.d("DEBUG", "Correct Location Clicked: "+ locationIndex);
-
+                Log.d("DEBUG", "Correct Location Clicked: " + locationIndex);
             }
         });
 
     }
-
-    public void killBurglar(){
-
-        imgBtnList.get(roundEndInfo[locationIndex]).setActivated(false);
-
-
-    }
-
-
-
 
 
 

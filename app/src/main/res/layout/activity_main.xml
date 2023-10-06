@@ -95,9 +95,7 @@
             android:layout_columnWeight="1"
             android:clickable="true"
             android:focusable="true"
-            android:focusableInTouchMode="true"
             android:background="@drawable/window_selector"
-            android:src="@drawable/window_selector"
             android:contentDescription="@string/window_context_desc" />
 
         <ImageButton
@@ -109,10 +107,7 @@
             android:clickable="true"
             android:contentDescription="@string/window_context_desc"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="@drawable/window_selector"
-            android:src="@drawable/window_selector" />
-
+            android:background="@drawable/window_selector"/>
         <ImageButton
             android:id="@+id/window3"
             android:layout_width="0dp"
@@ -122,7 +117,6 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/window_context_desc"
-            android:focusableInTouchMode="true"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -134,9 +128,6 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/window_context_desc"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/window_selector"
-
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -148,8 +139,6 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/window_context_desc"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/window_selector"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -161,9 +150,7 @@
             android:clickable="true"
             android:contentDescription="@string/window_context_desc"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/window_selector"
-            android:background="@drawable/window_selector" />
+            android:background="@drawable/window_selector"/>
 
         <ImageButton
             android:id="@+id/window7"
@@ -174,8 +161,6 @@
             android:contentDescription="@string/window_context_desc"
             android:clickable="true"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/window_selector"
             android:background="@drawable/window_selector" />
 
         <ImageButton
@@ -187,9 +172,7 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/window_context_desc"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/window_selector"
-            android:background="@drawable/window_selector" />
+            android:background="@drawable/window_selector"  />
 
         <ImageButton
             android:id="@+id/window9"
@@ -200,11 +183,7 @@
             android:contentDescription="@string/window_context_desc"
             android:clickable="true"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/window_selector"
-
             android:background="@drawable/window_selector" />
-
 
     </GridLayout>
 
