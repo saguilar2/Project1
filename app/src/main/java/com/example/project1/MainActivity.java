@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.project1.SharedCode.IntruderLogic;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton burg9;
     private Button startBtn;
     private Button stpBtn;
+    private ImageView life1;
+    private ImageView life2;
+    private ImageView life3;
 
     private TextView scoreTVDisplay;
     private TextView highScoreTVDisplay;
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private final IntruderLogic intruder = new IntruderLogic(9);
 
     private ArrayList<ImageButton> imgBtnList = new ArrayList<>(10);
+    private ArrayList<ImageView> imgViewList = new ArrayList<>(3);
 
 
     @Override
@@ -94,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
         imgBtnList.add(burg7);
         imgBtnList.add(burg8);
         imgBtnList.add(burg9);
+
+        life1 = findViewById(R.id.heart1);
+        life2 = findViewById(R.id.heart2);
+        life3 = findViewById(R.id.heart3);
+
+        imgViewList.add(life1);
+        imgViewList.add(life2);
+        imgViewList.add(life3);
 
         final Observer<Integer> ScoreObserver = new Observer<Integer>() {
             @Override
@@ -162,11 +175,19 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (startNewGame && startNewGame2) {
+                        for(int i = 0; i <imgViewList.size(); i++){
+                            if(i+1 <= roundEndInfo[livesInd]){
+                                imgViewList.get(i).setActivated(true);
+                            } else {
+                                imgViewList.get(i).setActivated(false);
+                            }
+                        }
 
                         if (roundEndInfo[livesInd] <= 0) {
 
                             scoreModel.SetScore(Integer.valueOf(0));
                             gameStarted = false;
+                            intruder.restart();
                         }
                         scoreModel.SetScore(Integer.valueOf(roundEndInfo[currScoreInd]));
                         scoreModel.GetScore();

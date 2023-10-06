@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/lives"/>
+            android:background="@drawable/live_selector"/>
 
         <ImageView
             android:id="@+id/heart2"
@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/lives" />
+            android:background="@drawable/live_selector" />
 
         <ImageView
             android:id="@+id/heart3"
@@ -69,7 +69,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/lives" />
+            android:background="@drawable/live_selector" />
 
 
     </LinearLayout>
