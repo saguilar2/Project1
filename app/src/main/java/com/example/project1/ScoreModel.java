@@ -7,32 +7,30 @@ public class ScoreModel extends ViewModel {
     private MutableLiveData<Integer> Score;
     private MutableLiveData<Integer> HighScore;
 
-public void InitialiseScoreModel(){
-    if(Score == null){
-        Score = new MutableLiveData<Integer>();
+    public void InitialiseScoreModel() {
+        if (Score == null) {
+            Score = new MutableLiveData<Integer>();
+        }
+        if (HighScore == null) {
+            HighScore = new MutableLiveData<Integer>();
+            HighScore.setValue(0);
+        }
     }
-    if(HighScore == null){
-        HighScore = new MutableLiveData<Integer>();
-    }
-}
 
-    public MutableLiveData<Integer> GetScore(){
+    public MutableLiveData<Integer> GetScore() {
         InitialiseScoreModel();
         return Score;
     }
 
-    public MutableLiveData<Integer> GetHighScore(){
+    public MutableLiveData<Integer> GetHighScore() {
         InitialiseScoreModel();
-
-
         return HighScore;
     }
 
-    public void SetScore(Integer NewScore){
+    public void SetScore(Integer NewScore) {
         InitialiseScoreModel();
         Score.setValue(NewScore);
-        if(NewScore > HighScore.getValue()){
-
+        if (NewScore > HighScore.getValue()) {
             HighScore.setValue(NewScore);
         }
     }

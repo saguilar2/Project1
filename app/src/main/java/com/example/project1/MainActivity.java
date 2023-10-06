@@ -52,19 +52,21 @@ public class MainActivity extends AppCompatActivity {
     private boolean startNewGame2;
     private boolean boolKillBurglar;
 
+    private int PreviousLocation;
     private final IntruderLogic intruder = new IntruderLogic(9);
 
-    public ArrayList<ImageButton> imgBtnList = new ArrayList<>(10);
-    public int locationOfOldOldBurglar = -1;
+    private ArrayList<ImageButton> imgBtnList = new ArrayList<>(10);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PreviousLocation = -1;
         startNewGame = true;
         startNewGame2 = true;
         gameStarted = false;
+        boolKillBurglar = false;
         scoreModel = new ViewModelProvider(this).get(ScoreModel.class);
 
         scoreTVDisplay = findViewById(R.id.scoreTV);
@@ -93,14 +95,15 @@ public class MainActivity extends AppCompatActivity {
         final Observer<Integer> ScoreObserver = new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable final Integer newScore) {
-                scoreTVDisplay.setText(newScore.toString());
+                scoreTVDisplay.setText("Score: " + newScore.toString());
 
             }
         };
         final Observer<Integer> HighScoreObserver = new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable final Integer newScore) {
-                scoreTVDisplay.setText(newScore.toString());
+
+                highScoreTVDisplay.setText("High Score: " + newScore.toString());
 
             }
         };
@@ -112,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 gameStarted = true;
-                Log.d("DEBUG", "StartBtn Clicked");
-                runApp(gameStarted);
+                runApp();
             }
         });
 
@@ -127,16 +129,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (gameStarted && roundEndInfo != null) {
-//                    scoreModel.SetScore(Integer.valueOf(roundEndInfo[currScoreInd]));
-                    scoreModel.GetScore();
-                    if (roundEndInfo[newLvlInd] == 1) {
+
+                    if (boolKillBurglar) {
+                        imgBtnList.get(PreviousLocation).setActivated(false);
+                        Log.d(TAG, "Killed the burglar " + boolKillBurglar + " " + PreviousLocation);
+                        boolKillBurglar = false;
+                    }
+
+                    if (startNewGame && startNewGame2) {
+
+                        if (roundEndInfo[livesInd] <= 0) {
+
+                            scoreModel.SetScore(Integer.valueOf(0));
+                            gameStarted = false;
+                        }
+                        scoreModel.SetScore(Integer.valueOf(roundEndInfo[currScoreInd]));
+                        scoreModel.GetScore();
                         scoreModel.GetHighScore();
                     }
-                }
-
-
-                if (gameStarted) {
-
                     if (startNewGame) {
                         appearanceRate.Start(roundEndInfo[intruderAppearanceRateInd]);
                         startNewGame = false;
@@ -144,18 +154,18 @@ public class MainActivity extends AppCompatActivity {
                     if (appearanceRate.TimerEnded()) {
                         Log.d(TAG, "time remaning " + appearanceRate.TimerEnded());
                         if (startNewGame2) {
-                            if (boolKillBurglar) {
-                                imgBtnList.get(locationOfOldOldBurglar).setActivated(false);
-                                Log.d(TAG, "Killed the burglar" + boolKillBurglar + locationOfOldOldBurglar);
-                                locationOfOldOldBurglar = -1;
-                                boolKillBurglar = false;
-                            }
                             dispBurglar();
                             burglarOnScreen.Start(roundEndInfo[intruderOnScreenInd]);
                             startNewGame2 = false;
+
                         }
 
-                        appearanceRate.resetTimer();
+                        if (burglarOnScreen.TimerEnded()) {
+                            roundEndInfo = intruder.RoundEnd(false);
+                            startNewGame = true;
+                            startNewGame2 = true;
+                            boolKillBurglar = true;
+                        }
                     }
 
                 }
@@ -166,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void runApp(boolean gameStarted) {
+    public void runApp() {
 
         if (gameStarted) {
             roundEndInfo = intruder.GameStart();
@@ -175,21 +185,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean toggleGameStarted(boolean gameStarted) {
-        gameStarted = !gameStarted;
-        return gameStarted;
-    }
-
-
     public void dispBurglar() {
-
+        PreviousLocation = roundEndInfo[locationIndex];
         imgBtnList.get(roundEndInfo[locationIndex]).setActivated(true);
         imgBtnList.get(roundEndInfo[locationIndex]).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                locationOfOldOldBurglar = roundEndInfo[locationIndex];
                 burglarOnScreen.stop();
                 roundEndInfo = intruder.RoundEnd(true);
+
                 boolKillBurglar = true;
                 startNewGame = true;
                 startNewGame2 = true;
@@ -198,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
 
 }
