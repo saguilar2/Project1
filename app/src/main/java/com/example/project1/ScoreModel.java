@@ -23,20 +23,18 @@ public void InitialiseScoreModel(){
 
     public MutableLiveData<Integer> GetHighScore(){
         InitialiseScoreModel();
+
+
         return HighScore;
     }
 
     public void SetScore(Integer NewScore){
         InitialiseScoreModel();
         Score.setValue(NewScore);
-    }
+        if(NewScore > HighScore.getValue()){
 
-    public void SetHighScore(Integer NewHighScore){
-        InitialiseScoreModel();
-        if(NewHighScore > HighScore.getValue()){
-
-            HighScore.setValue(NewHighScore);
+            HighScore.setValue(NewScore);
         }
-
     }
+
 }

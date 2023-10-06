@@ -92,14 +92,22 @@ public class MainActivity extends AppCompatActivity {
         imgBtnList.add(burg7);
         imgBtnList.add(burg8);
         imgBtnList.add(burg9);
-        final Observer<Integer> TimePastedObserver = new Observer<Integer>(){
+        final Observer<Integer> ScoreObserver = new Observer<Integer>(){
             @Override
-            public void onChanged(@Nullable final Integer newTime){
-                scoreTVDisplay.setText(newTime);
+            public void onChanged(@Nullable final Integer newScore){
+                scoreTVDisplay.setText(newScore.toString());
 
             }
         };
-        scoreModel.GetScore().observe(this,TimePastedObserver);
+        final Observer<Integer> HighScoreObserver = new Observer<Integer>(){
+            @Override
+            public void onChanged(@Nullable final Integer newScore){
+                scoreTVDisplay.setText(newScore.toString());
+
+            }
+        };
+        scoreModel.GetScore().observe(this,ScoreObserver);
+        scoreModel.GetHighScore().observe(this,HighScoreObserver);
 
 
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -117,12 +125,14 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-if(gameStarted && startNewGame2 ){
-    scoreModel.SetScore(roundEndInfo[currScoreInd]);
-    if(roundEndInfo[newLvlInd] == 1){
-        scoreModel.SetHighScore(roundEndInfo[currScoreInd]);
-    }
+if(gameStarted && startNewGame2 ) {
+    scoreModel.SetScore(Integer.valueOf(roundEndInfo[currScoreInd]));
+    scoreModel.GetScore();
 }
+    if(roundEndInfo[newLvlInd] == 1){
+        scoreModel.GetHighScore();
+    }
+
 
                 if(gameStarted){
 
