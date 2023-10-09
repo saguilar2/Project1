@@ -30,7 +30,6 @@ public class ScoreModel extends ViewModel {
 
     // returns the current High Score
     public MutableLiveData<Integer> GetHighScore() {
-
         InitialiseScoreModel();
         return HighScore;
     }
